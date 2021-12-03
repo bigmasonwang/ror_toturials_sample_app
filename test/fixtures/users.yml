@@ -5,8 +5,9 @@ mason:
   email: bigmasonwang@gmail.com
   password_digest: <%= User.digest('123456') %>
 
-# two:
-#   name: MyString
-#   email: MyString
+jd:
+  name: Jhon Doe
+  email: jd@example.com
+  password_digest: <%= User.digest('123456') %>
 
 # empty
