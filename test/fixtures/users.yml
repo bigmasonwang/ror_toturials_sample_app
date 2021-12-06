@@ -4,6 +4,7 @@ mason:
   name: Mason Wang
   email: bigmasonwang@gmail.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 jd:
   name: Jhon Doe
