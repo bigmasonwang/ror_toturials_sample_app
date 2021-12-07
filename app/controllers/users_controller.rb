@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: %i[index edit update destroy]
+  before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: :destroy
 
   def index
@@ -18,11 +18,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_prams)
     if @user.save
-      forwarding_url = session[:forwarding_url]
-      reset_session
-      log_in @user
-      flash[:success] = 'Welcome to the Sample App!'
-      redirect_to forwarding_url || @user
+      @user.send_activation_email
+      flash[:info] = 'Please check your email to activate your account.'
+      redirect_to root_url
     else
       render 'new'
     end
